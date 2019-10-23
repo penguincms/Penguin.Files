@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.1" />
+    <PackageReference Include="Penguin.Debugging" Version="2.0.1" />
+    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="2.1.5" />
+    <PackageReference Include="Penguin.Files.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Penguin.Security.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Penguin.Files</name>
+    </assembly>
+    <members>
+        <member name="T:Penguin.Files.Services.FileService">
+            <summary>
+            A collection of methods used to simplify informational access to the local file system
+            </summary>
+        </member>
+        <member name="P:Penguin.Files.Services.FileService.KnownFiles">
+            <summary>
+            Represents a list of files that have been checked for existence, to prevent superflous hard drive reads. Key is path, Value is last determination of existence
+            </summary>
+        </member>
+        <member name="P:Penguin.Files.Services.FileService.ApplicationPath">
+            <summary>
+            Returns the current executing directory (not overridden)
+            </summary>
+        </member>
+        <member name="P:Penguin.Files.Services.FileService.ExecutionPathOverride">
+            <summary>
+            If the executing directory was overridden, this will not be null
+            </summary>
+        </member>
+        <member name="M:Penguin.Files.Services.FileService.#ctor(Penguin.Security.Abstractions.Interfaces.IUserSession,Penguin.Configuration.Abstractions.Interfaces.IProvideConfigurations)">
+            <summary>
+            Instantiates this class, and creates a file system watcher (if null) to send messages back to the service
+            if any changes occur during execution
+            </summary>
+        </member>
+        <member name="M:Penguin.Files.Services.FileService.SetExecutionPath(System.String)">
+            <summary>
+            Overrides the internal determination of the executing directory
+            </summary>
+            <param name="Root">The new directory to set as the execution root</param>
+        </member>
+        <member name="M:Penguin.Files.Services.FileService.TrimTilde(System.String)">
+            <summary>
+            If the path starts with ~/ this method strips that off
+            </summary>
+            <param name="instr">The string to strip</param>
+            <returns>The path without ~/</returns>
+        </member>
+    </members>
+</doc>
