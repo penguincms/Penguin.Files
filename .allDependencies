@@ -1,0 +1,7 @@
+Penguin.Configuration.Abstractions
+Penguin.Extensions.String
+Penguin.Debugging
+Penguin.Extensions.Exceptions
+Penguin.DependencyInjection.Abstractions
+Penguin.Files.Abstractions
+Penguin.Security.Abstractions
