@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Penguin.Files</name>
+        <name>Penguin.Files.Local</name>
     </assembly>
     <members>
         <member name="T:Penguin.Files.Services.FileService">
