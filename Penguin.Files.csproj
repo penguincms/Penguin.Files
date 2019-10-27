@@ -7,10 +7,10 @@
     <Description>Not Available</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Files.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Penguin.Security.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.1-63707648343" />
-    <PackageReference Include="Penguin.Debugging" Version="2.0.1-63707652289" />
-    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="2.1.5-63707653241" />
+    <PackageReference Include="Penguin.Security.Abstractions" Version="2.0.0-T9LXGUJ" />
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.1-T9LXGUJ" />
+    <PackageReference Include="Penguin.Debugging" Version="2.0.1-T9LXGUJ" />
+    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="2.1.5-T9LXGUJ" />
+    <PackageReference Include="Penguin.Files.Abstractions" Version="2.0.1-T9LXGUJ" />
   </ItemGroup>
 </Project>
