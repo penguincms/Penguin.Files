@@ -9,10 +9,10 @@
     <RootNamespace>Penguin.Files</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Security.Abstractions" Version="2.0.1-T9M2XAX" />
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.2-T9M2XAX" />
-    <PackageReference Include="Penguin.Debugging" Version="2.0.2-T9M2XAX" />
-    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="2.1.6-T9M2XAX" />
-    <PackageReference Include="Penguin.Files.Abstractions" Version="2.0.2-T9M2XAX" />
+    <PackageReference Include="Penguin.Security.Abstractions" Version="2.0.1-T9M3AAF" />
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.2-T9M3AAF" />
+    <PackageReference Include="Penguin.Debugging" Version="2.0.2-T9M3AAF" />
+    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="2.1.6-T9M3AAF" />
+    <PackageReference Include="Penguin.Files.Abstractions" Version="2.0.2-T9M3AAF" />
   </ItemGroup>
 </Project>
