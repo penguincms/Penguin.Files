@@ -25,7 +25,7 @@ namespace Penguin.Files.Services
         /// <summary>
         /// Returns the current executing directory (not overridden)
         /// </summary>
-        public virtual string ApplicationPath => AppDomain.CurrentDomain.BaseDirectory;
+        public virtual string ApplicationPath => Directory.GetCurrentDirectory();
 
         protected IProvideConfigurations ConfigurationProvider { get; set; }
 
@@ -114,7 +114,9 @@ namespace Penguin.Files.Services
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(Uri));
 
-            string toMatch = TrimTilde(Uri);
+            string toMatch = TrimTilde(Uri).Replace("/", "\\");
+
+            
 
             if (!IsCaseSensitive)
             {
