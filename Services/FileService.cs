@@ -150,11 +150,11 @@ namespace Penguin.Files.Services
 
             if (root.StartsWith("~"))
             {
-                root.Substring(1);
+                root = root.Substring(1);
             }
             if (root.StartsWith("/"))
             {
-                root.Substring(1);
+                root = root.Substring(1);
             }
             return Path.Combine(Directory.GetCurrentDirectory(), root);
         }
