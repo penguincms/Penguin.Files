@@ -7,6 +7,7 @@
     <Description>Not Available</Description>
     <AssemblyName>Penguin.Files</AssemblyName>
     <RootNamespace>Penguin.Files</RootNamespace>
+    <DocumentationFile>Penguin.Files.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Penguin.Security.Abstractions" Version="2.0.1-T9QC72V" />
