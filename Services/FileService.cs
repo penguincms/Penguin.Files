@@ -17,6 +17,10 @@ namespace Penguin.Files.Services
     /// </summary>
     public class FileService : IRegisterMostDerived
     {
+        private static FileSystemWatcher Watcher;
+
+        private bool? isCaseSensitive;
+
         /// <summary>
         /// Represents a list of files that have been checked for existence, to prevent superflous hard drive reads. Key is path, Value is last determination of existence
         /// </summary>
@@ -41,27 +45,23 @@ namespace Penguin.Files.Services
         {
             get
             {
-                if (!isCaseSensitive.HasValue)
+                if (!this.isCaseSensitive.HasValue)
                 {
                     string currentDir = Directory.GetCurrentDirectory();
 
                     if (Directory.Exists(currentDir.ToLower(CultureInfo.CurrentCulture)) && Directory.Exists(currentDir.ToUpper(CultureInfo.CurrentCulture)))
                     {
-                        isCaseSensitive = false;
+                        this.isCaseSensitive = false;
                     }
                     else
                     {
-                        isCaseSensitive = true;
+                        this.isCaseSensitive = true;
                     }
                 }
 
-                return isCaseSensitive.Value;
+                return this.isCaseSensitive.Value;
             }
         }
-
-        private static FileSystemWatcher Watcher;
-
-        private bool? isCaseSensitive;
 
         /// <summary>
         /// Instantiates this class, and creates a file system watcher (if null) to send messages back to the service
@@ -69,8 +69,8 @@ namespace Penguin.Files.Services
         /// </summary>
         public FileService(IUserSession userSession = null, IProvideConfigurations configurationProvider = null)
         {
-            UserSession = userSession;
-            ConfigurationProvider = configurationProvider;
+            this.UserSession = userSession;
+            this.ConfigurationProvider = configurationProvider;
 
             lock (WatcherLock)
             {
@@ -116,9 +116,7 @@ namespace Penguin.Files.Services
 
             string toMatch = TrimTilde(Uri).Replace("/", "\\");
 
-            
-
-            if (!IsCaseSensitive)
+            if (!this.IsCaseSensitive)
             {
                 toMatch = toMatch.ToLower(CultureInfo.CurrentCulture);
             }
@@ -129,7 +127,7 @@ namespace Penguin.Files.Services
             }
             else
             {
-                result = File.Exists(Path.Combine(ApplicationPath, toMatch));
+                result = File.Exists(Path.Combine(this.ApplicationPath, toMatch));
 
                 KnownFiles.TryAdd(toMatch, result);
 
@@ -139,7 +137,7 @@ namespace Penguin.Files.Services
 
         public string GetUserFilesRoot()
         {
-            string root = ConfigurationProvider.GetConfiguration(ConfigurationNames.USER_FILES_ROOT);
+            string root = this.ConfigurationProvider.GetConfiguration(ConfigurationNames.USER_FILES_ROOT);
 
             if (string.IsNullOrWhiteSpace(root))
             {
@@ -161,21 +159,24 @@ namespace Penguin.Files.Services
 
         public string GetUserHome(IUser u = null)
         {
-            u = u ?? UserSession.LoggedInUser;
+            u = u ?? this.UserSession.LoggedInUser;
 
             if (u is null)
             {
                 throw new Exception("Can not get user home for null user when no active user session exists");
             }
 
-            return Path.Combine(GetUserFilesRoot(), u.Guid.ToString());
+            return Path.Combine(this.GetUserFilesRoot(), u.Guid.ToString());
         }
 
         /// <summary>
         /// Overrides the internal determination of the executing directory
         /// </summary>
         /// <param name="Root">The new directory to set as the execution root</param>
-        public void SetExecutionPath(string Root) => ExecutionPathOverride = Root;
+        public void SetExecutionPath(string Root)
+        {
+            this.ExecutionPathOverride = Root;
+        }
 
         public void StoreOnDisk(IFile df)
         {
@@ -190,7 +191,7 @@ namespace Penguin.Files.Services
 
                     if (string.IsNullOrWhiteSpace(df.FullName))
                     {
-                        string RawPath = GetUserFilesRoot();
+                        string RawPath = this.GetUserFilesRoot();
 
                         df.FullName = Path.Combine(RawPath, Guid.NewGuid().ToString().Replace("-", ""));
                     }
@@ -229,6 +230,9 @@ namespace Penguin.Files.Services
             return toMatch;
         }
 
-        private static void Watcher_Event(object sender, FileSystemEventArgs e) => KnownFiles.Clear();
+        private static void Watcher_Event(object sender, FileSystemEventArgs e)
+        {
+            KnownFiles.Clear();
+        }
     }
 }
