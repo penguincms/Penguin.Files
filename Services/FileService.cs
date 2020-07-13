@@ -22,7 +22,7 @@ namespace Penguin.Files.Services
         private bool? isCaseSensitive;
 
         /// <summary>
-        /// Represents a list of files that have been checked for existence, to prevent superflous hard drive reads. Key is path, Value is last determination of existence
+        /// Represents a list of files that have been checked for existence, to prevent superfluous hard drive reads. Key is path, Value is last determination of existence
         /// </summary>
         public static ConcurrentDictionary<string, bool> KnownFiles { get; } = new ConcurrentDictionary<string, bool>();
 
@@ -101,19 +101,11 @@ namespace Penguin.Files.Services
             if (df.Data.Length == 0 && File.Exists(df.FullName))
             {
                 df.Data = File.ReadAllBytes(df.FullName);
-
-                /// <summary>
-                /// Checks if a file exists on disk. This is here because IO on the disk is VERY slow
-                /// </summary>
-                /// <param name="Uri"></param>
-                /// <returns></returns>
             }
         }
 
         public bool Exists(string Uri)
         {
-            Contract.Requires(!string.IsNullOrWhiteSpace(Uri));
-
             string toMatch = TrimTilde(Uri).Replace("/", "\\");
 
             if (!this.IsCaseSensitive)
@@ -218,16 +210,17 @@ namespace Penguin.Files.Services
         /// <returns>The path without ~/</returns>
         protected static string TrimTilde(string instr)
         {
-            Contract.Requires(instr != null);
-
-            string toMatch = instr;
-
-            if (toMatch.StartsWith("~/", System.StringComparison.OrdinalIgnoreCase))
+            if (instr is null)
             {
-                toMatch = toMatch.Substring(2);
+                throw new ArgumentNullException(nameof(instr));
             }
 
-            return toMatch;
+            if (instr.StartsWith("~/", System.StringComparison.OrdinalIgnoreCase))
+            {
+                instr = instr.Substring(2);
+            }
+
+            return instr;
         }
 
         private static void Watcher_Event(object sender, FileSystemEventArgs e)
