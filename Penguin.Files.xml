@@ -11,7 +11,7 @@
         </member>
         <member name="P:Penguin.Files.Services.FileService.KnownFiles">
             <summary>
-            Represents a list of files that have been checked for existence, to prevent superflous hard drive reads. Key is path, Value is last determination of existence
+            Represents a list of files that have been checked for existence, to prevent superfluous hard drive reads. Key is path, Value is last determination of existence
             </summary>
         </member>
         <member name="P:Penguin.Files.Services.FileService.ApplicationPath">
