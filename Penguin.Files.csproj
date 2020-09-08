@@ -10,10 +10,10 @@
     <DocumentationFile>Penguin.Files.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Debugging" Version="5.0.1-T9ZTQVZ" />
-    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="5.0.1-T9ZTQVZ" />
-    <PackageReference Include="Penguin.Files.Abstractions" Version="5.0.1-T9ZTQVZ" />
-    <PackageReference Include="Penguin.Security.Abstractions" Version="5.0.1-T9ZTQVZ" />
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.1-T9ZTQVZ" />
+    <PackageReference Include="Penguin.Debugging" Version="5.0.1-TA29PDE" />
+    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="5.0.1-TA29PDE" />
+    <PackageReference Include="Penguin.Files.Abstractions" Version="5.0.1-TA29PDE" />
+    <PackageReference Include="Penguin.Security.Abstractions" Version="5.0.1-TA29PDE" />
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.1-TA29PDE" />
   </ItemGroup>
 </Project>
