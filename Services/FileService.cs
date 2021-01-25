@@ -6,7 +6,6 @@ using Penguin.Files.Abstractions;
 using Penguin.Security.Abstractions.Interfaces;
 using System;
 using System.Collections.Concurrent;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.IO;
 
@@ -106,7 +105,12 @@ namespace Penguin.Files.Services
 
         public bool Exists(string Uri)
         {
-            string toMatch = TrimTilde(Uri).Replace("/", "\\");
+            string toMatch = TrimTilde(Uri);
+
+            if (Path.DirectorySeparatorChar == '\\')
+            {
+                toMatch = toMatch.Replace("/", "\\");
+            }
 
             if (!this.IsCaseSensitive)
             {
@@ -138,14 +142,16 @@ namespace Penguin.Files.Services
 
             root = root.Replace("\\", "/");
 
-            if (root.StartsWith("~"))
+            if (root[0] == '~')
             {
                 root = root.Substring(1);
             }
-            if (root.StartsWith("/"))
+
+            if (root[0] == '/')
             {
                 root = root.Substring(1);
             }
+
             return Path.Combine(Directory.GetCurrentDirectory(), root);
         }
 
