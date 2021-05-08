@@ -13,7 +13,7 @@
     <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="5.0.4" />
     <PackageReference Include="Penguin.Files.Abstractions" Version="5.0.4" />
     <PackageReference Include="Penguin.Security.Abstractions" Version="5.0.4" />
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.4" />
     <PackageReference Include="Penguin.Debugging" Version="5.0.4" />
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.6-TAEO1KM" />
   </ItemGroup>
 </Project>
