@@ -14,6 +14,6 @@
     <PackageReference Include="Penguin.Files.Abstractions" Version="5.0.6-TAHULSY" />
     <PackageReference Include="Penguin.Security.Abstractions" Version="5.0.6-TAHULSY" />
     <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.6-TAHULSY" />
-    <PackageReference Include="Penguin.Debugging" Version="5.0.6-TAJHTXV" />
+    <PackageReference Include="Penguin.Debugging" Version="5.0.6-TAKDH3F" />
   </ItemGroup>
 </Project>
