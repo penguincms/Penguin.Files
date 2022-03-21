@@ -125,7 +125,7 @@ namespace Penguin.Files.Services
             {
                 result = File.Exists(Path.Combine(this.ApplicationPath, toMatch));
 
-                KnownFiles.TryAdd(toMatch, result);
+                _ = KnownFiles.TryAdd(toMatch, result);
 
                 return result;
             }
@@ -171,10 +171,7 @@ namespace Penguin.Files.Services
         /// Overrides the internal determination of the executing directory
         /// </summary>
         /// <param name="Root">The new directory to set as the execution root</param>
-        public void SetExecutionPath(string Root)
-        {
-            this.ExecutionPathOverride = Root;
-        }
+        public void SetExecutionPath(string Root) => this.ExecutionPathOverride = Root;
 
         public void StoreOnDisk(IFile df)
         {
@@ -229,9 +226,6 @@ namespace Penguin.Files.Services
             return instr;
         }
 
-        private static void Watcher_Event(object sender, FileSystemEventArgs e)
-        {
-            KnownFiles.Clear();
-        }
+        private static void Watcher_Event(object sender, FileSystemEventArgs e) => KnownFiles.Clear();
     }
 }
