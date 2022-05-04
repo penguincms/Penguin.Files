@@ -1,8 +1,8 @@
-﻿using Penguin.Cms.Modules.Files.Constants.Strings;
-using Penguin.Configuration.Abstractions.Interfaces;
+﻿using Penguin.Configuration.Abstractions.Interfaces;
 using Penguin.Debugging;
 using Penguin.DependencyInjection.Abstractions.Interfaces;
 using Penguin.Files.Abstractions;
+using Penguin.Files.Constants.Strings;
 using Penguin.Security.Abstractions.Interfaces;
 using System;
 using System.Collections.Concurrent;
@@ -171,7 +171,10 @@ namespace Penguin.Files.Services
         /// Overrides the internal determination of the executing directory
         /// </summary>
         /// <param name="Root">The new directory to set as the execution root</param>
-        public void SetExecutionPath(string Root) => this.ExecutionPathOverride = Root;
+        public void SetExecutionPath(string Root)
+        {
+            this.ExecutionPathOverride = Root;
+        }
 
         public void StoreOnDisk(IFile df)
         {
@@ -226,6 +229,9 @@ namespace Penguin.Files.Services
             return instr;
         }
 
-        private static void Watcher_Event(object sender, FileSystemEventArgs e) => KnownFiles.Clear();
+        private static void Watcher_Event(object sender, FileSystemEventArgs e)
+        {
+            KnownFiles.Clear();
+        }
     }
 }
