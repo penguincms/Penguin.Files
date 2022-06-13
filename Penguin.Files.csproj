@@ -2,7 +2,7 @@
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
-    <PackageProjectUrl>https://github.com/PenguinCms/Penguin.Files</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Files</PackageProjectUrl>
     <Version>5.0.5</Version>
     <Description>Not Available</Description>
     <AssemblyName>Penguin.Files</AssemblyName>
@@ -10,10 +10,10 @@
     <DocumentationFile>Penguin.Files.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="5.0.6-TAX9354" />
-    <PackageReference Include="Penguin.Files.Abstractions" Version="5.0.6-TAX9354" />
-    <PackageReference Include="Penguin.Security.Abstractions" Version="5.0.6-TAX9354" />
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.6-TAX9354" />
-    <PackageReference Include="Penguin.Debugging" Version="5.0.6-TAX9354" />
+    <PackageReference Include="Penguin.DependencyInjection.Abstractions" Version="5.0.6-TAZCES9" />
+    <PackageReference Include="Penguin.Files.Abstractions" Version="5.0.6-TAZCES9" />
+    <PackageReference Include="Penguin.Security.Abstractions" Version="5.0.6-TAZCES9" />
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="5.0.6-TAZCES9" />
+    <PackageReference Include="Penguin.Debugging" Version="5.0.6-TAZCES9" />
   </ItemGroup>
 </Project>
