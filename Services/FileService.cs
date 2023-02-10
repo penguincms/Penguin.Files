@@ -38,6 +38,7 @@ namespace Penguin.Files.Services
         protected string ExecutionPathOverride { get; set; }
 
         protected IUserSession UserSession { get; set; }
+
         private static object WatcherLock { get; set; } = new object();
 
         private bool IsCaseSensitive
