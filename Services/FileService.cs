@@ -44,21 +44,14 @@ namespace Penguin.Files.Services
         {
             get
             {
-                if (!this.isCaseSensitive.HasValue)
+                if (!isCaseSensitive.HasValue)
                 {
                     string currentDir = Directory.GetCurrentDirectory();
 
-                    if (Directory.Exists(currentDir.ToLower(CultureInfo.CurrentCulture)) && Directory.Exists(currentDir.ToUpper(CultureInfo.CurrentCulture)))
-                    {
-                        this.isCaseSensitive = false;
-                    }
-                    else
-                    {
-                        this.isCaseSensitive = true;
-                    }
+                    isCaseSensitive = !Directory.Exists(currentDir.ToLower(CultureInfo.CurrentCulture)) || !Directory.Exists(currentDir.ToUpper(CultureInfo.CurrentCulture));
                 }
 
-                return this.isCaseSensitive.Value;
+                return isCaseSensitive.Value;
             }
         }
 
@@ -68,8 +61,8 @@ namespace Penguin.Files.Services
         /// </summary>
         public FileService(IUserSession userSession = null, IProvideConfigurations configurationProvider = null)
         {
-            this.UserSession = userSession;
-            this.ConfigurationProvider = configurationProvider;
+            UserSession = userSession;
+            ConfigurationProvider = configurationProvider;
 
             lock (WatcherLock)
             {
@@ -112,7 +105,7 @@ namespace Penguin.Files.Services
                 toMatch = toMatch.Replace("/", "\\");
             }
 
-            if (!this.IsCaseSensitive)
+            if (!IsCaseSensitive)
             {
                 toMatch = toMatch.ToLower(CultureInfo.CurrentCulture);
             }
@@ -123,7 +116,7 @@ namespace Penguin.Files.Services
             }
             else
             {
-                result = File.Exists(Path.Combine(this.ApplicationPath, toMatch));
+                result = File.Exists(Path.Combine(ApplicationPath, toMatch));
 
                 _ = KnownFiles.TryAdd(toMatch, result);
 
@@ -133,7 +126,7 @@ namespace Penguin.Files.Services
 
         public string GetUserFilesRoot()
         {
-            string root = this.ConfigurationProvider.GetConfiguration(ConfigurationNames.USER_FILES_ROOT);
+            string root = ConfigurationProvider.GetConfiguration(ConfigurationNames.USER_FILES_ROOT);
 
             if (string.IsNullOrWhiteSpace(root))
             {
@@ -144,12 +137,12 @@ namespace Penguin.Files.Services
 
             if (root[0] == '~')
             {
-                root = root.Substring(1);
+                root = root[1..];
             }
 
             if (root[0] == '/')
             {
-                root = root.Substring(1);
+                root = root[1..];
             }
 
             return Path.Combine(Directory.GetCurrentDirectory(), root);
@@ -157,14 +150,11 @@ namespace Penguin.Files.Services
 
         public string GetUserHome(IUser u = null)
         {
-            u = u ?? this.UserSession.LoggedInUser;
+            u ??= UserSession.LoggedInUser;
 
-            if (u is null)
-            {
-                throw new Exception("Can not get user home for null user when no active user session exists");
-            }
-
-            return Path.Combine(this.GetUserFilesRoot(), u.Guid.ToString());
+            return u is null
+                ? throw new Exception("Can not get user home for null user when no active user session exists")
+                : Path.Combine(GetUserFilesRoot(), u.Guid.ToString());
         }
 
         /// <summary>
@@ -173,7 +163,7 @@ namespace Penguin.Files.Services
         /// <param name="Root">The new directory to set as the execution root</param>
         public void SetExecutionPath(string Root)
         {
-            this.ExecutionPathOverride = Root;
+            ExecutionPathOverride = Root;
         }
 
         public void StoreOnDisk(IFile df)
@@ -185,11 +175,11 @@ namespace Penguin.Files.Services
                     byte[] toStore = df.Data;
                     df.Data = Array.Empty<byte>();
 
-                    FileInfo fileInfo = new FileInfo(df.FullName);
+                    FileInfo fileInfo = new(df.FullName);
 
                     if (string.IsNullOrWhiteSpace(df.FullName))
                     {
-                        string RawPath = this.GetUserFilesRoot();
+                        string RawPath = GetUserFilesRoot();
 
                         df.FullName = Path.Combine(RawPath, Guid.NewGuid().ToString().Replace("-", ""));
                     }
@@ -223,7 +213,7 @@ namespace Penguin.Files.Services
 
             if (instr.StartsWith("~/", System.StringComparison.OrdinalIgnoreCase))
             {
-                instr = instr.Substring(2);
+                instr = instr[2..];
             }
 
             return instr;
@@ -232,6 +222,11 @@ namespace Penguin.Files.Services
         private static void Watcher_Event(object sender, FileSystemEventArgs e)
         {
             KnownFiles.Clear();
+        }
+
+        public bool Exists(Uri Uri)
+        {
+            throw new NotImplementedException();
         }
     }
 }
