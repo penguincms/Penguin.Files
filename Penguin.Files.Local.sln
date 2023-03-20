@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Penguin.Files.Local", "Penguin.Files.Local.csproj", "{13404C16-31A9-4F8D-9A52-E3960702F308}"
 EndProject
@@ -18,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Penguin.Debugging.Local", "..\Penguin.Debugging\Penguin.Debugging.Local.csproj", "{13404C16-31A9-4F8D-9A52-E3960702F308}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Penguin.Extensions.Exceptions.Local", "..\Penguin.Extensions.Exceptions\Penguin.Extensions.Exceptions.Local.csproj", "{13404C16-31A9-4F8D-9A52-E3960702F308}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Penguin.FileStreams.Local", "..\Penguin.FileStreams\Penguin.FileStreams.Local.csproj", "{13404C16-31A9-4F8D-9A52-E3960702F308}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
