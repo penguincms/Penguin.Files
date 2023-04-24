@@ -224,10 +224,5 @@ namespace Penguin.Files.Services
         {
             KnownFiles.Clear();
         }
-
-        public bool Exists(Uri Uri)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
